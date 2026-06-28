@@ -1,0 +1,6 @@
+com\cpuburn\controller\MainController.class
+com\cpuburn\app\Main.class
+com\cpuburn\monitor\CpuMonitor.class
+com\cpuburn\engine\CpuBurnEngine.class
+com\cpuburn\worker\CpuWorker.class
+com\cpuburn\monitor\CpuMonitor$CpuSnapshot.class

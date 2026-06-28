@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cpuburn.controller.MainController"
+            style="-fx-background-color: #0d0d0d;">
+
+    <center>
+        <VBox spacing="14"
+              alignment="CENTER"
+              style="-fx-padding: 20;">
+
+            <!-- Titulo + Status -->
+            <HBox spacing="20" alignment="CENTER">
+                <Label text="CPU BURN"
+                       style="-fx-font-size: 28px; -fx-font-weight: bold;
+                              -fx-text-fill: #ff4444; -fx-font-family: monospace;"/>
+                <Label fx:id="statusLabel"
+                       text="Parado"/>
+            </HBox>
+
+            <!-- Linha 1: CPU Total, Kernel, Threads, Nucleos -->
+            <HBox spacing="30" alignment="CENTER">
+
+                <Label fx:id="cpuLabel"
+                       text="CPU Total: 0%"
+                       style="-fx-font-size: 16px; -fx-text-fill: #00ff88;
+                              -fx-font-family: monospace;"/>
+
+                <Label fx:id="kernelLabel"
+                       text="Kernel: 0%"
+                       style="-fx-font-size: 16px; -fx-text-fill: #44ddff;
+                              -fx-font-family: monospace;"/>
+
+                <Label fx:id="threadLabel"
+                       text="Threads ativas: 0"
+                       style="-fx-font-size: 16px; -fx-text-fill: #ffaa00;
+                              -fx-font-family: monospace;"/>
+
+                <Label fx:id="coresLabel"
+                       text="Nucleos: ?"
+                       style="-fx-font-size: 16px; -fx-text-fill: #aaaaaa;
+                              -fx-font-family: monospace;"/>
+
+            </HBox>
+
+            <!-- Linha 2: PID, Memoria, Temperatura -->
+            <HBox spacing="30" alignment="CENTER">
+
+                <Label fx:id="pidLabel"
+                       text="PID: ?"
+                       style="-fx-font-size: 14px; -fx-text-fill: #88aaff;
+                              -fx-font-family: monospace;"/>
+
+                <Label fx:id="memLabel"
+                       text="Memoria JVM: -- MB"
+                       style="-fx-font-size: 14px; -fx-text-fill: #cc88ff;
+                              -fx-font-family: monospace;"/>
+
+                <Label fx:id="tempLabel"
+                       text="Temp: --"
+                       style="-fx-font-size: 14px; -fx-text-fill: #ff8844;
+                              -fx-font-family: monospace;"/>
+
+            </HBox>
+
+            <!-- Grafico com duas linhas: Total e Kernel -->
+            <LineChart fx:id="chart"
+                       prefWidth="680"
+                       prefHeight="240"
+                       animated="false"
+                       title="Uso da CPU (ultimos 60s)"
+                       style="-fx-background-color: #1a1a1a;">
+                <xAxis>
+                    <NumberAxis label="Tempo (s)" animated="false"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="CPU %"
+                                lowerBound="0"
+                                upperBound="100"
+                                tickUnit="10"
+                                animated="false"/>
+                </yAxis>
+            </LineChart>
+
+            <!-- Labels por nucleo -->
+            <HBox fx:id="coreLabelsBox"
+                  spacing="8"
+                  alignment="CENTER"
+                  style="-fx-padding: 4; -fx-background-color: #1a1a1a;
+                         -fx-background-radius: 6;"/>
+
+            <!-- Slider de intensidade -->
+            <VBox spacing="4" alignment="CENTER">
+
+                <Label fx:id="intensityLabel"
+                       text="Intensidade: 100%"
+                       style="-fx-text-fill: #cccccc; -fx-font-family: monospace;"/>
+
+                <Slider fx:id="intensitySlider"
+                        min="1"
+                        max="100"
+                        value="100"
+                        prefWidth="400"
+                        showTickLabels="true"
+                        showTickMarks="true"
+                        majorTickUnit="25"/>
+
+            </VBox>
+
+            <!-- Botoes -->
+            <HBox spacing="16" alignment="CENTER">
+
+                <Button fx:id="startButton"
+                        text="Iniciar"
+                        onAction="#start"
+                        prefWidth="120"
+                        style="-fx-font-size: 14px;"/>
+
+                <Button fx:id="stopButton"
+                        text="Parar"
+                        onAction="#stop"
+                        prefWidth="120"
+                        style="-fx-font-size: 14px;"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
